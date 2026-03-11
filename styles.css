@@ -4,14 +4,127 @@
   color: #000000;
 }
 
-li {
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 20px;
+  margin: 0;
+}
+
+.Main_Container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 90vh;
+}
+
+.Input_Container {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+#new-task-input {
   padding: 10px;
-  margin-right: 30px;
+  font-size: 16px;
+  width: 300px;
+  border: 2px solid #ffff;
+  background: #222;
+  color: #ffff;
+  border-radius: 5px;
+}
+
+.Input_Container button {
+  padding: 10px 20px;
+  background: #ffff;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.Input_Container button:hover {
+  background: #cccc;
+}
+
+/* Kanban Board Layout */
+.kanban-board {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  overflow-x: auto;
+  padding: 10px 0;
+}
+
+.To_Do_Container,
+.In_Progress_Container,
+.Completed_Container {
+  flex: 0 0 350px;
+  background: #1a1a1a;
+  border: 2px solid #ffff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.To_Do_Container h3,
+.In_Progress_Container h3,
+.Completed_Container h3 {
+  margin: 0;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 2px solid #ffff;
+  text-align: center;
+}
+
+#Todo_Column {
+  color: #cc0000;
+}
+
+#In_Progress_Column {
+  color: gold;
+}
+
+#Completed_Column {
+  color: forestgreen;
+}
+
+ul {
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+li {
+  padding: 12px;
   background: #eee;
   cursor: grab;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+li:active {
+  cursor: grabbing;
 }
 
 .delete-btn {
@@ -22,79 +135,11 @@ li {
   cursor: pointer;
   border-radius: 3px;
   font-weight: bold;
+  transition: background 0.3s;
+  flex-shrink: 0;
+  margin-left: 10px;
 }
 
 .delete-btn:hover {
   background: #cc0000;
-}
-
-.Input_Container {
-  margin-bottom: 30px;
-  display: flex;
-  gap: 10px;
-}
-
-#new-task-input {
-  padding: 10px;
-  font-size: 16px;
-  width: 300px;
-  border: 2px solid #ffff;
-  background: #222;
-  color: #ffff;
-}
-
-.Input_Container button {
-  padding: 10px 20px;
-  background: #ffff;
-  color: #000;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  border-radius: 3px;
-}
-
-.Input_Container button:hover {
-  background: #cccc;
-}
-
-.Main_Container {
-    justify-self: center;
-}
-.To_Do_Container {
-    border: #ffff solid 5px;
-    width: 500px;
-    margin-bottom: 30px;
-    
-}
-
-#Todo_Column {
-  color: #ffff;
-  font-size: 40px;
-  justify-self: center;
-  color: #cc0000;
-}
-
-.In_Progress_Container {
-    margin-bottom: 30px;
-    border: #ffff solid 5px;
-     width: 500px;
-}
-
-#In_Progress_Column {
-  color: #ffff;
-  font-size: 40px;
-  justify-self: center;
-  color: gold;
-}
-
-.Completed_Container {
-    border: #ffff solid 5px;
-     width: 500px;
-}
-
-#Completed_Column {
-  color: #ffff;
-  font-size: 40px;
-  justify-self: center;
-  color: forestgreen;
 }
