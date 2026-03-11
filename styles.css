@@ -1,0 +1,50 @@
+:root {
+  background-color: #131313;
+  font-family: monospace;
+  color: #000000;
+}
+
+li {
+  padding: 10px;
+  margin-right: 30px;
+  background: #eee;
+  cursor: grab;
+}
+
+.Main_Container {
+    justify-self: center;
+}
+.To_Do_Container {
+    border: #ffff solid 5px;
+    width: 500px;
+    margin-bottom: 30px;
+}
+
+#Todo_Column {
+  color: #ffff;
+  font-size: 40px;
+  justify-self: center;
+}
+
+.In_Progress_Container {
+    margin-bottom: 30px;
+    border: #ffff solid 5px;
+     width: 500px;
+}
+
+#In_Progress_Column {
+  color: #ffff;
+  font-size: 40px;
+  justify-self: center;
+}
+
+.Completed_Container {
+    border: #ffff solid 5px;
+     width: 500px;
+}
+
+#Completed_Column {
+  color: #ffff;
+  font-size: 40px;
+  justify-self: center;
+}
