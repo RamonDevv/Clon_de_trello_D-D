@@ -9,6 +9,52 @@ li {
   margin-right: 30px;
   background: #eee;
   cursor: grab;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-btn {
+  background: #ff4444;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.delete-btn:hover {
+  background: #cc0000;
+}
+
+.Input_Container {
+  margin-bottom: 30px;
+  display: flex;
+  gap: 10px;
+}
+
+#new-task-input {
+  padding: 10px;
+  font-size: 16px;
+  width: 300px;
+  border: 2px solid #ffff;
+  background: #222;
+  color: #ffff;
+}
+
+.Input_Container button {
+  padding: 10px 20px;
+  background: #ffff;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.Input_Container button:hover {
+  background: #cccc;
 }
 
 .Main_Container {
@@ -18,12 +64,14 @@ li {
     border: #ffff solid 5px;
     width: 500px;
     margin-bottom: 30px;
+    
 }
 
 #Todo_Column {
   color: #ffff;
   font-size: 40px;
   justify-self: center;
+  color: #cc0000;
 }
 
 .In_Progress_Container {
@@ -36,6 +84,7 @@ li {
   color: #ffff;
   font-size: 40px;
   justify-self: center;
+  color: gold;
 }
 
 .Completed_Container {
@@ -47,4 +96,5 @@ li {
   color: #ffff;
   font-size: 40px;
   justify-self: center;
+  color: forestgreen;
 }
