@@ -1,7 +1,18 @@
 :root {
-  background-color: #131313;
-  font-family: monospace;
-  color: #000000;
+  /* Paleta de colores moderna */
+  --bg-main: #121212;
+  --bg-column: #1e1e1e;
+  --bg-card: #2a2a2a;
+  --text-primary: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --accent-todo: #ff5f57;
+  --accent-progress: #ffbd2e;
+  --accent-done: #27c93f;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  
+  background-color: var(--bg-main);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--text-primary);
 }
 
 * {
@@ -9,125 +20,136 @@
 }
 
 body {
-  padding: 20px;
+  padding: 40px 20px;
   margin: 0;
 }
 
 .Main_Container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 30px;
   height: 90vh;
 }
 
+/* --- Área de entrada --- */
 .Input_Container {
   display: flex;
-  gap: 10px;
-  flex-shrink: 0;
+  gap: 12px;
+  justify-content: center;
+  background: var(--bg-column);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border-subtle);
 }
 
 #new-task-input {
-  padding: 10px;
-  font-size: 16px;
-  width: 300px;
-  border: 2px solid #ffff;
-  background: #222;
-  color: #ffff;
-  border-radius: 5px;
+  padding: 12px 16px;
+  font-size: 15px;
+  width: 350px;
+  border: 1px solid var(--border-subtle);
+  background: #252525;
+  color: white;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+}
+
+#new-task-input:focus {
+  outline: none;
+  border-color: #555;
 }
 
 .Input_Container button {
-  padding: 10px 20px;
-  background: #ffff;
+  padding: 0 24px;
+  background: #ffffff;
   color: #000;
   border: none;
   cursor: pointer;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: background 0.3s;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: transform 0.2s, background 0.3s;
 }
 
 .Input_Container button:hover {
-  background: #cccc;
+  background: #e0e0e0;
+  transform: translateY(-1px);
 }
 
-/* Kanban Board Layout */
+/* --- Tablero Kanban --- */
 .kanban-board {
   display: flex;
-  gap: 20px;
+  gap: 24px;
   flex: 1;
-  overflow-x: auto;
-  padding: 10px 0;
+  padding-bottom: 20px;
 }
 
 .To_Do_Container,
 .In_Progress_Container,
 .Completed_Container {
-  flex: 0 0 350px;
-  background: #1a1a1a;
-  border: 2px solid #ffff;
-  border-radius: 8px;
+  flex: 1;
+  min-width: 320px;
+  background: var(--bg-column);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 .To_Do_Container h3,
 .In_Progress_Container h3,
 .Completed_Container h3 {
   margin: 0;
-  padding: 15px;
-  font-size: 18px;
-  font-weight: bold;
-  border-bottom: 2px solid #ffff;
-  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-#Todo_Column {
-  color: #cc0000;
-}
+#Todo_Column { color: var(--accent-todo); }
+#In_Progress_Column { color: var(--accent-progress); }
+#Completed_Column { color: var(--accent-done); }
 
-#In_Progress_Column {
-  color: gold;
-}
-
-#Completed_Column {
-  color: forestgreen;
-}
-
+/* --- Lista de tareas y tarjetas --- */
 ul {
   list-style: none;
-  padding: 10px;
+  padding: 16px;
   margin: 0;
-  flex: 1;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  min-height: 200px;
+  flex: 1;
 }
 
 li {
-  padding: 12px;
-  background: #eee;
-  cursor: grab;
+  padding: 16px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: center; /* Alinea verticalmente */
   gap: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 li:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
+  border-color: rgba(255,255,255,0.2);
 }
 
-li:active {
-  cursor: grabbing;
+/* Empuja los botones a la derecha */
+.task-text {
+  flex: 1;
+  word-break: break-word;
 }
 
+/* Botones originales (sólidos) */
 .delete-btn {
   background: #ff4444;
   color: white;
@@ -136,7 +158,6 @@ li:active {
   cursor: pointer;
   border-radius: 3px;
   font-weight: bold;
-  transition: background 0.3s;
   flex-shrink: 0;
 }
 
@@ -152,26 +173,36 @@ li:active {
   cursor: pointer;
   border-radius: 3px;
   font-weight: bold;
-  transition: background 0.3s;
   flex-shrink: 0;
 }
 
 .edit-btn:hover {
-  background: #2c2c2c;
+  background: #444;
 }
 
-.task-text {
-  flex: 1;
-  word-break: break-word;
+/* --- Retroalimentación de arrastrar y soltar --- */
+.sortable-ghost {
+  opacity: 0.4;
+  background: var(--bg-card) !important;
+  border: 2px dashed var(--accent-progress) !important;
+  transform: scale(0.98) !important;
 }
 
-.edit-input {
-  flex: 1;
-  padding: 8px;
-  font-size: 14px;
-  border: 2px solid #4CAF50;
-  border-radius: 3px;
-  font-family: monospace;
-  background: #fff;
-  color: #000;
+.sortable-chosen {
+  background: var(--bg-card) !important;
+  border: 2px solid var(--accent-progress) !important;
+  box-shadow: 0 0 20px rgba(255, 189, 46, 0.5) !important;
+  transform: scale(1.02) !important;
+}
+
+/* Resaltar columna cuando está siendo destino */
+.column-drag-over {
+  background: linear-gradient(135deg, var(--bg-column) 0%, rgba(255, 189, 46, 0.1) 100%) !important;
+  border: 2px solid var(--accent-progress) !important;
+  box-shadow: inset 0 0 20px rgba(255, 189, 46, 0.2) !important;
+}
+
+/* Placeholder visual más visible */
+ul.sortable-fallback li {
+  opacity: 0.5 !important;
 }
