@@ -113,6 +113,7 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
@@ -137,9 +138,40 @@ li:active {
   font-weight: bold;
   transition: background 0.3s;
   flex-shrink: 0;
-  margin-left: 10px;
 }
 
 .delete-btn:hover {
   background: #cc0000;
+}
+
+.edit-btn {
+  background: #2c2c2c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: bold;
+  transition: background 0.3s;
+  flex-shrink: 0;
+}
+
+.edit-btn:hover {
+  background: #2c2c2c;
+}
+
+.task-text {
+  flex: 1;
+  word-break: break-word;
+}
+
+.edit-input {
+  flex: 1;
+  padding: 8px;
+  font-size: 14px;
+  border: 2px solid #4CAF50;
+  border-radius: 3px;
+  font-family: monospace;
+  background: #fff;
+  color: #000;
 }
