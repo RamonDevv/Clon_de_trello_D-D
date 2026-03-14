@@ -2,10 +2,10 @@ const To_Do_list = document.getElementById("task-list_To_Do");
 const In_Progress_list = document.getElementById("In_Progress_task-list");
 const Completed_list = document.getElementById("Completed_task-list");
 
-// PASO 1: Definir clave de almacenamiento
+// STEP 1: Define storage key | PASO 1: Definir clave de almacenamiento
 const STORAGE_KEY = "trello_tasks";
 
-// PASO 2: Función para guardar todas las tareas en localStorage
+// STEP 2: Function to save all tasks to localStorage | PASO 2: Función para guardar todas las tareas en localStorage
 function saveTasks() {
   const tasks = {
     todo: Array.from(To_Do_list.children).map((li) =>
@@ -19,30 +19,28 @@ function saveTasks() {
     ),
   };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
-  // console.log("Tasks saved:", tasks);
 }
 
-// PASO 3: Función para cargar tareas desde localStorage
+// STEP 3: Function to load tasks from localStorage | PASO 3: Función para cargar tareas desde localStorage
 function loadTasks() {
   const saved = localStorage.getItem(STORAGE_KEY);
   if (saved) {
     const tasks = JSON.parse(saved);
 
-    // Limpiar tareas existentes
+    // Clear existing tasks | Limpiar tareas existentes
     To_Do_list.innerHTML = "";
     In_Progress_list.innerHTML = "";
     Completed_list.innerHTML = "";
 
-    // Completar listas con datos guardados
+    // Populate lists from saved data | Completar listas con datos guardados
     tasks.todo.forEach((task) => addTaskToList(To_Do_list, task));
     tasks.inProgress.forEach((task) => addTaskToList(In_Progress_list, task));
     tasks.completed.forEach((task) => addTaskToList(Completed_list, task));
 
-    // console.log("Tasks loaded from localStorage");
   }
 }
 
-// PASO 4: Función auxiliar para crear un elemento de tarea con botón de eliminar y botón de edición
+// STEP 4: Helper function to create a task item with delete and edit button | PASO 4: Función auxiliar para crear un elemento de tarea con botón de eliminar y botón de edición
 function createTaskItem(text) {
   const li = document.createElement("li");
   li.innerHTML = `<span class="task-text">${text}</span> <button class="delete-btn" onclick="deleteTask(this)">✕</button>
@@ -53,7 +51,7 @@ function createTaskItem(text) {
   return li;
 }
 
-// PASO 5: Función auxiliar para agregar tarea a una lista específica
+// STEP 5: Helper function to add task to a specific list | PASO 5: Función auxiliar para agregar tarea a una lista específica
 function addTaskToList(list, taskText) {
   if (taskText.trim() !== "") {
     const li = createTaskItem(taskText);
@@ -61,29 +59,29 @@ function addTaskToList(list, taskText) {
   }
 }
 
-// PASO 6: Función para eliminar una tarea
+// STEP 6: Function to delete a task | PASO 6: Función para eliminar una tarea
 function deleteTask(button) {
   button.parentElement.remove();
   saveTasks();
 }
 
-// PASO 6.5: Función para editar una tarea
+// STEP 6.5: Function to edit a task | PASO 6.5: Función para editar una tarea
 function editTask(li) {
   const taskText = li.querySelector(".task-text");
   const currentText = taskText.textContent;
 
-  // Crear un campo de entrada
+  // Create an input field | Crear un campo de entrada
   const input = document.createElement("input");
   input.type = "text";
   input.value = currentText;
   input.className = "edit-input";
 
-  // Reemplazar el texto con entrada
+  // Replace the text with input | Reemplazar el texto con entrada
   taskText.replaceWith(input);
   input.focus();
   input.select();
 
-  // Función para guardar cambios
+  // Function to save changes | Función para guardar cambios
   function saveEdit() {
     const newText = input.value.trim();
     if (newText !== "") {
@@ -93,7 +91,7 @@ function editTask(li) {
       input.replaceWith(span);
       saveTasks();
     } else {
-      // Restaurar original si está vacío
+      // Restore original if empty | Restaurar original si está vacío
       const span = document.createElement("span");
       span.className = "task-text";
       span.textContent = currentText;
@@ -101,18 +99,18 @@ function editTask(li) {
     }
   }
 
-  // Guardar al presionar Enter
+  // Save on Enter key | Guardar al presionar Enter
   input.addEventListener("keypress", function (e) {
     if (e.key === "Enter") {
       saveEdit();
     }
   });
 
-  // Guardar al salir del foco (cuando hace clic afuera)
+  // Save on blur (when click outside) | Guardar al salir del foco (cuando hace clic afuera)
   input.addEventListener("blur", saveEdit);
 }
 
-// PASO 7: Función para agregar nueva tarea
+// STEP 7: Function to add new task | PASO 7: Función para agregar nueva tarea
 function addNewTask() {
   const input = document.getElementById("new-task-input");
   const taskText = input.value.trim();
@@ -124,7 +122,7 @@ function addNewTask() {
   }
 }
 
-// PASO 8: Permitir agregar tarea con la tecla Enter
+// STEP 8: Allow adding task with Enter key | PASO 8: Permitir agregar tarea con la tecla Enter
 document.addEventListener("DOMContentLoaded", function () {
   const input = document.getElementById("new-task-input");
   if (input) {
@@ -135,11 +133,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Cargar tareas guardadas cuando se carga la página
+  // Load saved tasks when page loads | Cargar tareas guardadas cuando se carga la página
   loadTasks();
 });
 
-// PASO 9: Crear listas ordenables y guardar después de cambios
+// STEP 9: Create Sortable lists and save after changes | PASO 9: Crear listas ordenables y guardar después de cambios
 const sortableOptions = {
   group: "shared",
   animation: 150,
@@ -150,21 +148,21 @@ const sortableOptions = {
   delayOnTouchOnly: true,
   delay: 0,
   onMove: function(evt) {
-    // Highlight de la columna destino
+    // Highlight the target column | Highlight de la columna destino
     document.querySelectorAll(".To_Do_Container, .In_Progress_Container, .Completed_Container").forEach(col => {
       col.classList.remove("column-drag-over");
     });
     evt.to.closest(".To_Do_Container, .In_Progress_Container, .Completed_Container")?.classList.add("column-drag-over");
   },
   onEnd: function(evt) {
-    // Remover highlight cuando termina el drag
+    // Remove highlight when drag ends | Remover highlight cuando termina el drag
     document.querySelectorAll(".To_Do_Container, .In_Progress_Container, .Completed_Container").forEach(col => {
       col.classList.remove("column-drag-over");
     });
     saveTasks();
   },
   onStart: function(evt) {
-    // Agrega efecto visual cuando comienza el drag
+    // Add visual effect when drag starts | Agrega efecto visual cuando comienza el drag
     evt.item.style.opacity = "0.7";
   }
 };

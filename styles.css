@@ -1,5 +1,5 @@
 :root {
-  /* Paleta de colores moderna */
+  /* Modern color palette | Paleta de colores moderna */
   --bg-main: #121212;
   --bg-column: #1e1e1e;
   --bg-card: #2a2a2a;
@@ -33,7 +33,7 @@ body {
   height: 90vh;
 }
 
-/* --- Área de entrada --- */
+/* --- Input Area | Área de entrada --- */
 .Input_Container {
   display: flex;
   gap: 12px;
@@ -76,7 +76,7 @@ body {
   transform: translateY(-1px);
 }
 
-/* --- Tablero Kanban --- */
+/* --- Kanban Board | Tablero Kanban --- */
 .kanban-board {
   display: flex;
   gap: 24px;
@@ -113,7 +113,7 @@ body {
 #In_Progress_Column { color: var(--accent-progress); }
 #Completed_Column { color: var(--accent-done); }
 
-/* --- Lista de tareas y tarjetas --- */
+/* --- Task List & Cards | Lista de tareas y tarjetas --- */
 ul {
   list-style: none;
   padding: 16px;
@@ -132,7 +132,7 @@ li {
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
   display: flex;
-  align-items: center; /* Alinea verticalmente */
+  align-items: center; /* Align vertically | Alinea verticalmente */
   gap: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -143,13 +143,13 @@ li:hover {
   border-color: rgba(255,255,255,0.2);
 }
 
-/* Empuja los botones a la derecha */
+/* Push buttons to the right | Empuja los botones a la derecha */
 .task-text {
   flex: 1;
   word-break: break-word;
 }
 
-/* Botones originales (sólidos) */
+/* Original buttons (solid) | Botones originales (sólidos) */
 .delete-btn {
   background: #ff4444;
   color: white;
@@ -180,7 +180,7 @@ li:hover {
   background: #444;
 }
 
-/* --- Retroalimentación de arrastrar y soltar --- */
+/* --- Drag & Drop Feedback | Retroalimentación de arrastrar y soltar --- */
 .sortable-ghost {
   opacity: 0.4;
   background: var(--bg-card) !important;
@@ -195,7 +195,7 @@ li:hover {
   transform: scale(1.02) !important;
 }
 
-/* Resaltar columna cuando está siendo destino */
+/* Highlight column when it's being a target | Resaltar columna cuando está siendo destino */
 .column-drag-over {
   background: linear-gradient(135deg, var(--bg-column) 0%, rgba(255, 189, 46, 0.1) 100%) !important;
   border: 2px solid var(--accent-progress) !important;
